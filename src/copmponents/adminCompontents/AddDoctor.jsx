@@ -136,7 +136,7 @@ const AddDoctor = () => {
 
   return (
     <div
-      className="w-full flex flex-col items-center justify-center p-2 sm:p-6"
+      className="w-full flex flex-col items-center justify-center p-4 sm:p-6"
       dir="ltr"
     >
       <style>{`
@@ -144,30 +144,34 @@ const AddDoctor = () => {
           width: 100% !important;
         }
       `}</style>
-
-      <div className="w-full max-w-4xl bg-white p-3.5 sm:p-8 rounded-2xl border border-slate-100 shadow-sm text-left mx-auto">
-        {/* Top Header Section */}
-        <div className="flex flex-row items-center justify-between gap-3 mb-6 border-b border-slate-50 pb-4">
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <LuStethoscope className="text-xl sm:text-2xl text-teal-600 shrink-0" />
-            <h2 className="text-lg sm:text-xl font-bold text-slate-800">
-              Add New Doctor
-            </h2>
+           
+      <div className="w-full max-w-4xl bg-white p-5 sm:p-8 rounded-2xl border border-slate-100 shadow-sm text-left mx-auto">
+             
+        <div className="flex items-center justify-between mb-6 border-b border-slate-50 pb-4">
+                   
+          <div className="flex items-center gap-2">
+                        <LuStethoscope className="text-2xl text-teal-600" />   
+                   
+            <h2 className="text-xl font-bold text-slate-800">Add New Doctor</h2>
+                     
           </div>
-
+                   
           <button
             type="button"
             onClick={() => navigate("/admin/doctors")}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all active:scale-95 cursor-pointer shrink-0"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 text-sm font-semibold text-slate-600 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all active:scale-95 cursor-pointer"
           >
-            <LuArrowLeft className="text-sm sm:text-base" /> Go Back
+                        <LuArrowLeft className="text-base" /> Go Back          
           </button>
+               
         </div>
-
-        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
-          {/* Responsive Image Upload Section */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 mb-6 bg-slate-50/50 p-4 rounded-xl border border-slate-100 w-full sm:w-max">
-            <div className="h-16 w-16 bg-white border border-dashed border-slate-200 rounded-full flex items-center justify-center text-xl overflow-hidden shadow-sm text-slate-400 shrink-0">
+             
+        <form onSubmit={handleSubmit} className="space-y-6">
+                 
+          <div className="flex flex-wrap items-center gap-4 mb-6 bg-slate-50/50 p-4 rounded-xl border border-slate-100 w-max">
+                     
+            <div className="h-16 w-16 bg-white border border-dashed border-slate-200 rounded-full flex items-center justify-center text-xl overflow-hidden shadow-sm text-slate-400">
+                         
               {image ? (
                 <img
                   src={URL.createObjectURL(image)}
@@ -177,21 +181,27 @@ const AddDoctor = () => {
               ) : (
                 <LuCamera className="text-teal-600 animate-pulse" />
               )}
+                       
             </div>
+                       
             <input
               type="file"
               accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}
-              className="w-full sm:w-auto text-xs sm:text-sm text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100 cursor-pointer"
+              className="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100 cursor-pointer"
             />
+                   
           </div>
-
-          {/* Form Fields */}
+                 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                     
             <div>
+                           
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
-                <LuUser className="text-slate-400 text-base" /> Doctor Name
+                                <LuUser className="text-slate-400 text-base" />
+                Doctor Name              
               </label>
+                           
               <input
                 type="text"
                 name="name"
@@ -201,14 +211,19 @@ const AddDoctor = () => {
                 className="w-full p-3 rounded-xl border border-slate-200 outline-none focus:border-teal-500 text-sm transition-all"
                 placeholder="Dr. John Doe"
               />
+                         
             </div>
+                       
             <div>
+                           
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
+                             
                 <LuActivity className="text-slate-400 text-base" /> Doctor Type
-                / Role
+                                / Role              
               </label>
-
+                           
               <div className="relative w-full">
+                               
                 <button
                   type="button"
                   onClick={() => {
@@ -218,27 +233,35 @@ const AddDoctor = () => {
                   }}
                   className="w-full flex items-center justify-between bg-white border border-slate-200 rounded-xl p-3 text-left text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all focus:border-teal-500 shadow-3xs cursor-pointer"
                 >
+                                   
                   <span className="truncate">
+                                       
                     {formData.isSurgeon
                       ? "Surgeon (OPD + Operation Facility) 🩺"
                       : "General Physician (OPD Only) 👨‍⚕️"}
+                                     
                   </span>
+                                   
                   <span
                     className={`text-[8px] text-slate-400 transition-transform duration-200 shrink-0 ml-2 ${
                       isOpenSurgeonSelect ? "rotate-180" : ""
                     }`}
                   >
-                    ▼
+                                        ▼                  
                   </span>
+                                 
                 </button>
-
+                               
                 {isOpenSurgeonSelect && (
                   <>
+                                       
                     <div
                       className="fixed inset-0 z-10"
                       onClick={() => setIsOpenSurgeonSelect(false)}
                     />
+                                     
                     <div className="absolute left-0 right-0 mt-1.5 bg-white border border-slate-150 rounded-xl shadow-xl z-20 overflow-hidden divide-y divide-slate-50">
+                                           
                       <button
                         type="button"
                         onClick={() => {
@@ -251,9 +274,10 @@ const AddDoctor = () => {
                             : "text-slate-600 hover:bg-slate-50"
                         }`}
                       >
-                        General Physician (OPD Only) 👨‍⚕️
+                                                General Physician (OPD Only) 👨‍⚕️
+                                           
                       </button>
-
+                                         
                       <button
                         type="button"
                         onClick={() => {
@@ -266,20 +290,30 @@ const AddDoctor = () => {
                             : "text-slate-600 hover:bg-slate-50"
                         }`}
                       >
-                        Surgeon (OPD + Operation Facility) 🩺
+                                                Surgeon (OPD + Operation
+                        Facility) 🩺                    
                       </button>
+                                       
                     </div>
+                                   
                   </>
                 )}
+                             
               </div>
+                         
             </div>
+                     
           </div>
-
+                   
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                       
             <div>
+                           
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
-                <LuMail className="text-slate-400 text-base" /> Doctor Email
+                                <LuMail className="text-slate-400 text-base" />
+                Doctor Email              
               </label>
+                           
               <input
                 type="email"
                 name="email"
@@ -289,11 +323,16 @@ const AddDoctor = () => {
                 className="w-full p-3 rounded-xl border border-slate-200 outline-none focus:border-teal-500 text-sm transition-all"
                 placeholder="johndoe@gmail.com"
               />
+                         
             </div>
+                       
             <div>
+                           
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
-                <LuLock className="text-slate-400 text-base" /> Password
+                                <LuLock className="text-slate-400 text-base" />
+                Password              
               </label>
+                           
               <input
                 type="password"
                 name="password"
@@ -303,17 +342,23 @@ const AddDoctor = () => {
                 className="w-full p-3 rounded-xl border border-slate-200 outline-none focus:border-teal-500 text-sm transition-all"
                 placeholder="••••••••"
               />
+                       
             </div>
+                   
           </div>
-
+                   
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                       
             <div>
+                           
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
-                <LuStethoscope className="text-slate-400 text-base" />{" "}
-                Speciality
+                               
+                <LuStethoscope className="text-slate-400 text-base" />          
+                      Speciality              
               </label>
-
+                           
               <div className="relative w-full">
+                             
                 <button
                   type="button"
                   onClick={() => {
@@ -323,23 +368,29 @@ const AddDoctor = () => {
                   }}
                   className="w-full flex items-center justify-between bg-white border border-slate-200 rounded-xl p-3 text-left text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all focus:border-teal-500 shadow-3xs cursor-pointer"
                 >
-                  <span className="truncate">{formData.speciality}</span>
+                                   
+                  <span className="truncate">{formData.speciality}</span>       
+                           
                   <span
                     className={`text-[8px] text-slate-400 transition-transform duration-200 shrink-0 ml-2 ${
                       isOpenSpecialitySelect ? "rotate-180" : ""
                     }`}
                   >
-                    ▼
+                                        ▼                  
                   </span>
+                                 
                 </button>
-
+                               
                 {isOpenSpecialitySelect && (
                   <>
+                                       
                     <div
                       className="fixed inset-0 z-10"
                       onClick={() => setIsOpenSpecialitySelect(false)}
                     />
+                                     
                     <div className="absolute left-0 right-0 mt-1.5 bg-white border border-slate-150 rounded-xl shadow-xl z-20 max-h-60 overflow-y-auto divide-y divide-slate-50">
+                                           
                       {[
                         "General Physician",
                         "Gynecologist",
@@ -361,21 +412,30 @@ const AddDoctor = () => {
                               : "text-slate-600 hover:bg-slate-50"
                           }`}
                         >
-                          {spec}
+                                                    {spec}                     
+                           
                         </button>
                       ))}
+                                         
                     </div>
+                                     
                   </>
                 )}
+                           
               </div>
+                         
             </div>
-
+                       
             <div>
+                           
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
-                <LuActivity className="text-slate-400 text-base" /> Experience
+                             
+                <LuActivity className="text-slate-400 text-base" /> Experience  
+                           
               </label>
-
+                           
               <div className="relative w-full">
+                               
                 <button
                   type="button"
                   onClick={() => {
@@ -385,23 +445,29 @@ const AddDoctor = () => {
                   }}
                   className="w-full flex items-center justify-between bg-white border border-slate-200 rounded-xl p-3 text-left text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all focus:border-teal-500 shadow-3xs cursor-pointer"
                 >
-                  <span className="truncate">{formData.experience}</span>
+                                   
+                  <span className="truncate">{formData.experience}</span>       
+                         
                   <span
                     className={`text-[8px] text-slate-400 transition-transform duration-200 shrink-0 ml-2 ${
                       isOpenExperienceSelect ? "rotate-180" : ""
                     }`}
                   >
-                    ▼
+                                        ▼                
                   </span>
+                               
                 </button>
-
+                             
                 {isOpenExperienceSelect && (
                   <>
+                                     
                     <div
                       className="fixed inset-0 z-10"
                       onClick={() => setIsOpenExperienceSelect(false)}
                     />
+                                       
                     <div className="absolute left-0 right-0 mt-1.5 bg-white border border-slate-150 rounded-xl shadow-xl z-20 max-h-60 overflow-y-auto divide-y divide-slate-50">
+                                           
                       {[
                         "1 Year",
                         "2 Years",
@@ -422,21 +488,31 @@ const AddDoctor = () => {
                               : "text-slate-600 hover:bg-slate-50"
                           }`}
                         >
-                          {exp}
+                                                    {exp}                     
                         </button>
                       ))}
+                                       
                     </div>
+                                     
                   </>
                 )}
+                             
               </div>
+                       
             </div>
+                   
           </div>
-
+                 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                       
             <div>
+                           
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
-                <LuGraduationCap className="text-slate-400 text-lg" /> Degree
+                               
+                <LuGraduationCap className="text-slate-400 text-lg" /> Degree  
+                           
               </label>
+                           
               <input
                 type="text"
                 name="degree"
@@ -446,13 +522,19 @@ const AddDoctor = () => {
                 className="w-full p-3 rounded-xl border border-slate-200 outline-none focus:border-teal-500 text-sm transition-all"
                 placeholder="MBBS, MD"
               />
+                       
             </div>
+                     
             <div>
+                           
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
+                             
                 <LuCalendar className="text-slate-400 text-base" /> Joining Date
-                / Booking Open Date
+                                / Booking Open Date            
               </label>
+                           
               <div className="w-full relative react-datepicker-custom-wrapper">
+                               
                 <DatePicker
                   selected={
                     formData.joiningDate ? new Date(formData.joiningDate) : null
@@ -488,16 +570,23 @@ const AddDoctor = () => {
                   ]}
                   placeholderText="Select Joining Date"
                 />
+                             
               </div>
+                         
             </div>
+                   
           </div>
-
+                   
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                       
             <div>
+                           
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
-                <LuDollarSign className="text-slate-400 text-base" /> OPD Fees
-                (Rs.)
+                               
+                <LuDollarSign className="text-slate-400 text-base" /> OPD Fees  
+                              (Rs.)            
               </label>
+                         
               <input
                 type="number"
                 name="fees"
@@ -507,12 +596,17 @@ const AddDoctor = () => {
                 className="w-full p-3 rounded-xl border border-slate-200 outline-none focus:border-teal-500 text-sm transition-all"
                 placeholder="1500"
               />
+                       
             </div>
+                       
             <div>
+                           
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
-                <LuDollarSign className="text-slate-400 text-base" /> Daily
-                Round Fees (Rs.)
+                               
+                <LuDollarSign className="text-slate-400 text-base" /> Daily    
+                            Round Fees (Rs.)              
               </label>
+                         
               <input
                 type="number"
                 name="roundFee"
@@ -522,12 +616,17 @@ const AddDoctor = () => {
                 className="w-full p-3 rounded-xl border border-slate-200 outline-none focus:border-teal-500 text-sm transition-all"
                 placeholder="2000"
               />
+                       
             </div>
+                       
             <div>
+                           
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
-                <LuPercent className="text-slate-400 text-base" /> Admin
-                Commission (%)
+                             
+                <LuPercent className="text-slate-400 text-base" /> Admin        
+                        Commission (%)              
               </label>
+                           
               <input
                 type="number"
                 name="commission"
@@ -537,13 +636,18 @@ const AddDoctor = () => {
                 className="w-full p-3 rounded-xl border border-slate-200 outline-none focus:border-teal-500 text-sm transition-all"
                 placeholder="20"
               />
+                       
             </div>
+                   
           </div>
-
+                   
           <div>
+                       
             <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
-              <LuFileText className="text-slate-400 text-base" /> About Doctor
+                            <LuFileText className="text-slate-400 text-base" />{" "}
+              About Doctor          
             </label>
+                       
             <textarea
               name="about"
               value={formData.about}
@@ -552,23 +656,30 @@ const AddDoctor = () => {
               className="w-full p-3 rounded-xl border border-slate-200 outline-none focus:border-teal-500 text-sm resize-none transition-all"
               placeholder="Write a brief description about the doctor's background..."
             ></textarea>
+                     
           </div>
-
+                 
           <div className="border-t border-slate-100 pt-6">
+                     
             <div className="flex items-center gap-2 mb-4">
-              <LuClock className="text-teal-600 text-lg" />
+                            <LuClock className="text-teal-600 text-lg" />       
+                 
               <h3 className="text-md font-bold text-slate-700">
-                Doctor Shift Schedule (Weekly)
+                                Doctor Shift Schedule (Weekly)            
               </h3>
+                         
             </div>
-
-            <div className="space-y-3 bg-slate-50 p-2 sm:p-4 rounded-2xl border border-slate-100">
+                       
+            <div className="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                           
               {Object.keys(weeklySchedule).map((day) => (
                 <div
                   key={day}
-                  className="flex flex-row items-center justify-between gap-2 p-2.5 sm:p-3 bg-white rounded-xl border border-slate-100 shadow-sm hover:border-slate-200 transition-colors"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-white rounded-xl border border-slate-100 shadow-sm hover:border-slate-200 transition-colors"
                 >
-                  <div className="flex items-center gap-1.5 select-none shrink-0">
+                                   
+                  <div className="flex items-center gap-2 w-32 select-none">
+                                     
                     <input
                       className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-slate-300 rounded cursor-pointer accent-teal-600"
                       type="checkbox"
@@ -582,57 +693,72 @@ const AddDoctor = () => {
                         )
                       }
                     />
+                                     
                     <label
                       htmlFor={`check-${day}`}
-                      className="text-xs sm:text-sm font-semibold text-slate-700 capitalize cursor-pointer"
+                      className="text-sm font-semibold text-slate-700 capitalize cursor-pointer"
                     >
-                      {day}
+                                            {day}                   
                     </label>
+                                     
                   </div>
-
+                                 
                   {weeklySchedule[day].isAvailable ? (
-                    <div className="flex items-center gap-1.5 bg-slate-50 p-1 sm:p-1.5 rounded-lg border border-slate-100 justify-end shrink-0">
+                    <div className="flex justify-between items-center gap-2 bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                                           
                       <input
                         type="time"
                         value={weeklySchedule[day].startTime}
                         onChange={(e) =>
                           handleScheduleChange(day, "startTime", e.target.value)
                         }
-                        className="p-1 px-1.5 rounded bg-white border border-slate-200 text-[11px] sm:text-xs font-medium text-slate-700 outline-none focus:border-teal-500 cursor-pointer w-19 sm:w-auto text-center"
+                        className="p-1 px-2 rounded-md bg-white border border-slate-200 text-xs font-medium text-slate-700 outline-none focus:border-teal-500 cursor-pointer"
                       />
-                      <span className="text-[10px] sm:text-xs text-slate-400 font-medium">
-                        to
+                                         
+                      <span className="text-xs text-slate-400 font-medium">
+                                                to                      
                       </span>
+                                         
                       <input
                         type="time"
                         value={weeklySchedule[day].endTime}
                         onChange={(e) =>
                           handleScheduleChange(day, "endTime", e.target.value)
                         }
-                        className="p-1 px-1.5 rounded bg-white border border-slate-200 text-[11px] sm:text-xs font-medium text-slate-700 outline-none focus:border-teal-500 cursor-pointer w-19 sm:w-auto text-center"
+                        className="p-1 px-2 rounded-md bg-white border border-slate-200 text-xs font-medium text-slate-700 outline-none focus:border-teal-500 cursor-pointer"
                       />
+                                         
                     </div>
                   ) : (
-                    <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs text-rose-500 font-semibold bg-rose-50/60 px-2 py-0.5 sm:py-1 rounded-lg border border-rose-100 shrink-0">
-                      <LuBan className="text-[10px]" /> Off Day
+                    <span className="inline-flex items-center gap-1 text-xs text-rose-500 font-semibold bg-rose-50/60 px-2.5 py-1 rounded-lg border border-rose-100">
+                                            <LuBan className="text-[11px]" />
+                      Off Day                  
                     </span>
                   )}
+                                 
                 </div>
               ))}
+                       
             </div>
+                   
           </div>
-
+                 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold p-3.5 rounded-xl transition-all shadow-md shadow-teal-50 active:scale-[0.99] disabled:bg-teal-400 cursor-pointer text-center text-sm sm:text-base"
+            className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold p-3.5 rounded-xl transition-all shadow-md shadow-teal-50 active:scale-[0.99] disabled:bg-teal-400 cursor-pointer text-center"
           >
+                       
             {isLoading
               ? "Adding Doctor to Directory..."
               : "Save Doctor Details"}
+                   
           </button>
+               
         </form>
+             
       </div>
+         
     </div>
   );
 };
