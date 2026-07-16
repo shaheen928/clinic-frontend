@@ -217,64 +217,68 @@ const AdminDashboard = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
-              <h3 className="text-base font-bold text-slate-800 border-b border-slate-100 pb-2">
+            <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
+              <h3 className="text-sm sm:text-base font-bold text-slate-800 border-b border-slate-100 pb-2 flex items-center gap-1.5">
                 👥 Staff Payroll Ledger
               </h3>
-              <div className="grid grid-cols-3 gap-2 text-center">
-                <div className="bg-slate-50 p-3 rounded-xl">
-                  <span className="block text-[10px] text-slate-400 font-medium uppercase">
+              <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-center">
+                <div className="bg-slate-50 p-2 sm:p-3 rounded-xl flex flex-col justify-between min-h-18">
+                  <span className="block text-[9px] sm:text-[10px] text-slate-400 font-medium uppercase tracking-tight leading-tight">
                     Total Committed
                   </span>
-                  <span className="text-xs font-bold text-slate-700 block mt-1">
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-700 block mt-1 break-all">
                     Rs. {dashData.totalStaffSalariesExpense || 0}
                   </span>
                 </div>
-                <div className="bg-emerald-50 p-3 rounded-xl">
-                  <span className="block text-[10px] text-emerald-600 font-medium uppercase">
+
+                <div className="bg-emerald-50 p-2 sm:p-3 rounded-xl flex flex-col justify-between min-h-18">
+                  <span className="block text-[9px] sm:text-[10px] text-emerald-600 font-medium uppercase tracking-tight leading-tight">
                     Disbursed/Paid
                   </span>
-                  <span className="text-xs font-bold text-emerald-700 block mt-1">
+                  <span className="text-[11px] sm:text-xs font-bold text-emerald-700 block mt-1 break-all">
                     Rs. {dashData.paidStaffSalaries || 0}
                   </span>
                 </div>
-                <div className="bg-amber-50 p-3 rounded-xl">
-                  <span className="block text-[10px] text-amber-600 font-medium uppercase">
+
+                <div className="bg-amber-50 p-2 sm:p-3 rounded-xl flex flex-col justify-between min-h-18">
+                  <span className="block text-[9px] sm:text-[10px] text-amber-600 font-medium uppercase tracking-tight leading-tight">
                     Unpaid/Pending
                   </span>
-                  <span className="text-xs font-bold text-amber-700 block mt-1">
+                  <span className="text-[11px] sm:text-xs font-bold text-amber-700 block mt-1 break-all">
                     Rs. {dashData.pendingStaffSalaries || 0}
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
-              <h3 className="text-base font-bold text-slate-800 border-b border-slate-100 pb-2">
-                🩺 Doctors Global Wallet Accounts
+            <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
+              <h3 className="text-sm sm:text-base font-bold text-slate-800 border-b border-slate-100 pb-2 flex items-center gap-1.5">
+                🩺 Doctors Global Wallet
               </h3>
-              <div className="grid grid-cols-3 gap-2 text-center">
-                <div className="bg-slate-50 p-3 rounded-xl">
-                  <span className="block text-[10px] text-slate-400 font-medium uppercase">
+              <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-center">
+                <div className="bg-slate-50 p-2 sm:p-3 rounded-xl flex flex-col justify-between min-h-18">
+                  <span className="block text-[9px] sm:text-[10px] text-slate-400 font-medium uppercase tracking-tight leading-tight">
                     Total Share
                   </span>
-                  <span className="text-xs font-bold text-slate-700 block mt-1">
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-700 block mt-1 break-all">
                     Rs. {dashData.doctorTotalShare || 0}
                   </span>
                 </div>
-                <div className="bg-blue-50 p-3 rounded-xl">
-                  <span className="block text-[10px] text-blue-600 font-medium uppercase">
+
+                <div className="bg-blue-50 p-2 sm:p-3 rounded-xl flex flex-col justify-between min-h-18">
+                  <span className="block text-[9px] sm:text-[10px] text-blue-600 font-medium uppercase tracking-tight leading-tight">
                     Admin Disbursed
                   </span>
-                  <span className="text-xs font-bold text-blue-700 block mt-1">
+                  <span className="text-[11px] sm:text-xs font-bold text-blue-700 block mt-1 break-all">
                     Rs. {dashData.totalDoctorPaid || 0}
                   </span>
                 </div>
-                <div className="bg-rose-50 p-3 rounded-xl">
-                  <span className="block text-[10px] text-rose-600 font-medium uppercase">
+
+                <div className="bg-rose-50 p-2 sm:p-3 rounded-xl flex flex-col justify-between min-h-18">
+                  <span className="block text-[9px] sm:text-[10px] text-rose-600 font-medium uppercase tracking-tight leading-tight">
                     Outstanding Owed
                   </span>
-                  <span className="text-xs font-bold text-rose-700 block mt-1">
+                  <span className="text-[11px] sm:text-xs font-bold text-rose-700 block mt-1 break-all">
                     Rs. {dashData.totalDoctorRemaining || 0}
                   </span>
                 </div>

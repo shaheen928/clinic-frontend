@@ -21,35 +21,15 @@ const Header = () => {
     <header className="w-full bg-white/80 backdrop-blur-md border-b border-slate-100/80 sticky top-0 z-50 transition-all duration-300">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
         <div className="flex items-center">
-          {/* <Link to="/" className="flex items-center gap-2.5 group transition-transform duration-200 active:scale-98">
+          <Link to="/" className="flex items-center gap-2.5 group transition-transform duration-200 active:scale-98">
             <div className="h-10 w-10 bg-teal-50 text-teal-600 rounded-xl flex items-center justify-center font-bold text-xl group-hover:bg-teal-600 group-hover:text-white transition-all duration-300 shadow-2xs">
               🏥
             </div>
             <span className="font-black text-slate-800 text-xl sm:text-2xl tracking-tight whitespace-nowrap">
               Shifa<span className="text-teal-600 group-hover:text-teal-500 transition-colors">Click</span>
             </span>
-          </Link> */}
-          <Link
-            to="/"
-            className="flex items-center gap-2.5 group transition-transform duration-200 active:scale-98"
-          >
-            <div className="h-10 w-10 bg-teal-50 text-teal-600 rounded-xl flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-all duration-300 shadow-2xs">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-6 h-6"
-              >
-                <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z" />
-              </svg>
-            </div>
-            <span className="font-black text-slate-800 text-xl sm:text-2xl tracking-tight whitespace-nowrap">
-              Shifa
-              <span className="text-teal-600 group-hover:text-teal-500 transition-colors">
-                Click
-              </span>
-            </span>
           </Link>
+          
         </div>
 
         <div className="hidden md:flex items-center gap-3">
@@ -136,13 +116,7 @@ const Header = () => {
               >
                 My Appointments 📅
               </Link>
-              <Link
-                to="/user-profile"
-                onClick={() => setIsOpen(false)}
-                className="text-slate-600 hover:text-teal-600 font-semibold text-sm py-2.5 px-3 rounded-lg hover:bg-slate-50 block transition-colors"
-              >
-                Profile 👤
-              </Link>
+               
               <button
                 onClick={handleLogout}
                 className="w-full text-left bg-rose-50 text-rose-600 font-bold text-sm px-4 py-2.5 rounded-xl mt-2 block transition-colors hover:bg-rose-100"
