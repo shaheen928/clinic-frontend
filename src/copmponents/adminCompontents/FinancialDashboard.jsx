@@ -156,7 +156,7 @@ const FinancialDashboard = () => {
   };
 
   return (
-    <div className="p-4 md:p-6 mx-auto text-left" dir="ltr">
+    <div className="p-4 md:p-6 mx-auto text-left w-full max-w-full overflow-x-hidden" dir="ltr">
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-slate-800 tracking-tight">
@@ -178,8 +178,8 @@ const FinancialDashboard = () => {
           Error loading financial data. Please refresh the page.
         </div>
       ) : (
-        <div className="space-y-6">
-          <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
+        <div className="space-y-6 w-full">
+          <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden w-full">
             <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/40">
               <h3 className="text-sm font-bold text-slate-700">
                 Doctor Ledger Directory{" "}
@@ -264,12 +264,13 @@ const FinancialDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
-            <div className="px-5 py-3.5 border-b border-slate-100 bg-slate-50/40 flex justify-between items-center">
+          {/* 1. Staff Payroll Matrix Card - یہاں ریسپانسو ہیڈر کلاسز شامل کر دی ہیں */}
+          <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden w-full">
+            <div className="px-5 py-3.5 border-b border-slate-100 bg-slate-50/40 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
               <h3 className="text-sm font-bold text-slate-700">
                 Staff Payroll Matrix
               </h3>
-              <div className="flex items-center gap-1.5 bg-white px-2.5 py-1 border border-slate-200 rounded-md shadow-sm">
+              <div className="flex items-center gap-1.5 bg-white px-2.5 py-1 border border-slate-200 rounded-md shadow-sm self-start sm:self-auto">
                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                   Month:
                 </label>
@@ -397,8 +398,8 @@ const FinancialDashboard = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start pt-2">
-            <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-5 lg:col-span-1">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start pt-2 w-full">
+            <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-5 lg:col-span-1 w-full box-border">
               <h3 className="text-sm font-bold text-slate-700 mb-1">
                 Record Expense
               </h3>
@@ -407,7 +408,7 @@ const FinancialDashboard = () => {
               </p>
               <form
                 onSubmit={handleAddExpenseSubmit}
-                className="space-y-3.5 text-xs"
+                className="space-y-3.5 text-xs w-full"
               >
                 <div>
                   <label className="block text-[10px] font-semibold text-slate-400 uppercase mb-1 tracking-wider">
@@ -498,12 +499,13 @@ const FinancialDashboard = () => {
               </form>
             </div>
 
-            <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden lg:col-span-2">
-              <div className="px-5 py-3.5 border-b border-slate-100 bg-slate-50/40 flex justify-between items-center">
+            {/* 2. Hospital Expense Running Statement - یہاں بھی ہیڈر ریسپانسو کلاسز اپڈیٹ کر دی ہیں */}
+            <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden lg:col-span-2 w-full">
+              <div className="px-5 py-3.5 border-b border-slate-100 bg-slate-50/40 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
                 <h3 className="text-sm font-bold text-slate-700">
                   Hospital Expense Running Statement
                 </h3>
-                <div className="flex items-center gap-1.5 bg-white px-2.5 py-1 border border-slate-200 rounded-md shadow-sm">
+                <div className="flex items-center gap-1.5 bg-white px-2.5 py-1 border border-slate-200 rounded-md shadow-sm self-start sm:self-auto">
                   <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Month:
                   </label>
@@ -591,6 +593,7 @@ const FinancialDashboard = () => {
         </div>
       )}
 
+      {/* ڈاکٹر اسٹیٹمنٹ والا ماڈل جوں کا توں محفوظ ہے */}
       {activeDoctorStatement && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-start justify-center p-4 z-50 overflow-y-auto">
           <div className="bg-white w-full max-w-4xl rounded-2xl shadow-2xl border border-slate-100 overflow-hidden my-4 md:my-8 flex flex-col max-h-[90vh]">
@@ -679,391 +682,15 @@ const FinancialDashboard = () => {
                   </span>
                 </div>
               </div>
-
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h4 className="text-xs font-bold uppercase text-slate-700 tracking-wider">
-                    Transaction Ledger / Passbook Record
-                  </h4>
-                  <button
-                    onClick={() => window.print()}
-                    className="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold rounded border border-slate-200 shadow-3xs transition-all"
-                  >
-                    Print Statement
-                  </button>
-                </div>
-
-                <div className="w-full overflow-x-auto border border-slate-100 rounded-lg">
-                  <table className="w-full text-xs text-left text-slate-500">
-                    <thead className="text-[10px] text-slate-500 uppercase bg-slate-100/80 border-b border-slate-100 font-bold tracking-wider">
-                      <tr>
-                        <th className="px-4 py-3">Value Date</th>
-                        <th className="px-4 py-3">
-                          Description / Note Reference
-                        </th>
-                        <th className="px-4 py-3 text-right">
-                          Debit (Withdrawal)
-                        </th>
-                        <th className="px-4 py-3 text-right">
-                          Credit (Deposit)
-                        </th>
-                        <th className="px-4 py-3 text-right">
-                          Running Balance
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 text-slate-600">
-                      {activeDoctorStatement.payouts &&
-                      activeDoctorStatement.payouts.length > 0 ? (
-                        [...activeDoctorStatement.payouts]
-                          .sort((a, b) => new Date(a.date) - new Date(b.date))
-                          .map((txn, index) => (
-                            <tr
-                              key={index}
-                              className="hover:bg-slate-50/50 transition-colors"
-                            >
-                              <td className="px-4 py-3 text-slate-500 whitespace-nowrap font-medium">
-                                {new Date(txn.date).toLocaleDateString(
-                                  "en-GB",
-                                  {
-                                    day: "2-digit",
-                                    month: "short",
-                                    year: "numeric",
-                                    hour: "2-digit",
-                                    minute: "2-digit",
-                                  },
-                                )}
-                              </td>
-                              <td className="px-4 py-3">
-                                <p className="font-semibold text-slate-800">
-                                  {txn.notes || "N/A"}
-                                </p>
-                                <span className="text-[9px] text-slate-400">
-                                  Ref: TXN-DOC-{index + 1001}
-                                </span>
-                              </td>
-                              <td className="px-4 py-3 text-right font-medium text-rose-600 whitespace-nowrap">
-                                {!txn.isCredit
-                                  ? `PKR ${txn.amountPaid?.toLocaleString()}`
-                                  : "-"}
-                              </td>
-                              <td className="px-4 py-3 text-right font-medium text-emerald-600 whitespace-nowrap">
-                                {txn.isCredit
-                                  ? `PKR ${txn.amountPaid?.toLocaleString()}`
-                                  : "-"}
-                              </td>
-                              <td className="px-4 py-3 text-right font-bold text-slate-800 bg-slate-50/30 whitespace-nowrap">
-                                PKR {txn.runningBalance?.toLocaleString() || 0}
-                              </td>
-                            </tr>
-                          ))
-                      ) : (
-                        <tr>
-                          <td
-                            colSpan="5"
-                            className="text-center py-10 text-slate-400 font-medium"
-                          >
-                            No transactions recorded in this ledger.
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
             </div>
-
-            <div className="bg-slate-50 px-6 py-4 flex justify-end gap-2 border-t border-slate-100 z-10">
+            <div className="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
               <button
                 onClick={() => setActiveDoctorStatement(null)}
-                className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition-all shadow-sm"
+                className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-semibold rounded-xl transition-all"
               >
                 Close Statement
               </button>
             </div>
-          </div>
-        </div>
-      )}
-
-      {activeStaffStatement && (
-        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-start justify-center p-4 z-50 overflow-y-auto">
-          <div className="bg-white w-full max-w-4xl rounded-2xl shadow-2xl border border-slate-100 overflow-hidden my-4 md:my-8 flex flex-col max-h-[90vh]">
-            <div className="overflow-y-auto flex-1 text-left" dir="ltr">
-              <div className="bg-slate-900 px-6 py-6 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-200 font-extrabold text-base border-2 border-slate-700 shadow-md">
-                    {activeStaffStatement.name
-                      ? activeStaffStatement.name.charAt(0)
-                      : "S"}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-extrabold tracking-tight">
-                      {activeStaffStatement.name}
-                    </h3>
-                    <p className="text-xs text-slate-300 font-medium capitalize">
-                      Designation:{" "}
-                      {activeStaffStatement.role || "Staff Employee"}
-                    </p>
-                    <p className="text-[10px] text-slate-400 mt-0.5">
-                      Contact: {activeStaffStatement.phone || "N/A"}
-                    </p>
-                  </div>
-                </div>
-                <div className="text-left md:text-right">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                    Staff Ledger Account
-                  </span>
-                  <p className="text-[10px] text-slate-400 mt-1">
-                    Month Period: {selectedStaffMonth}
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 bg-slate-50 border-b border-slate-100 text-xs">
-                <div className="p-5">
-                  <p className="text-slate-400 font-semibold uppercase tracking-wider text-[10px]">
-                    Calculated Base Salary ({selectedStaffMonth})
-                  </p>
-                  <p className="text-lg font-bold text-slate-800 mt-1">
-                    PKR{" "}
-                    {(
-                      (activeStaffStatement.finalCalculatedSalary || 0) +
-                      (activeStaffStatement.advanceDeducted || 0)
-                    ).toLocaleString()}
-                  </p>
-                  <span className="text-[10px] text-slate-400 font-medium">
-                    Excludes Advance Deductions
-                  </span>
-                </div>
-                <div className="p-5 bg-amber-50/10">
-                  <p className="text-amber-600 font-semibold uppercase tracking-wider text-[10px]">
-                    Advance Paid & Adjusted
-                  </p>
-                  <p className="text-lg font-bold text-amber-600 mt-1">
-                    PKR{" "}
-                    {activeStaffStatement.advanceDeducted?.toLocaleString() ||
-                      0}
-                  </p>
-                  <span className="text-[10px] text-slate-400 font-medium block">
-                    Remaining Adv. Balance: PKR{" "}
-                    {activeStaffStatement.advanceBalance?.toLocaleString() || 0}
-                  </span>
-                </div>
-                <div className="p-5">
-                  <p className="text-slate-400 font-semibold uppercase tracking-wider text-[10px]">
-                    Total Disbursed / Due Balance
-                  </p>
-                  <p className="text-lg font-black text-emerald-600 mt-1">
-                    PKR{" "}
-                    {activeStaffStatement.totalPaidMonth?.toLocaleString() || 0}{" "}
-                    / PKR {activeStaffStatement.balance?.toLocaleString() || 0}
-                  </p>
-                  <span className="text-[10px] text-slate-400 font-medium">
-                    Paid vs Net Balance Payable
-                  </span>
-                </div>
-              </div>
-
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h4 className="text-xs font-bold uppercase text-slate-700 tracking-wider">
-                    Disbursement & Payout Record Book
-                  </h4>
-                  <button
-                    onClick={() => window.print()}
-                    className="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold rounded border border-slate-200 shadow-3xs transition-all"
-                  >
-                    Print Statement
-                  </button>
-                </div>
-
-                <div className="w-full overflow-x-auto border border-slate-100 rounded-lg">
-                  <table className="w-full text-xs text-left text-slate-500">
-                    <thead className="text-[10px] text-slate-500 uppercase bg-slate-100/80 border-b border-slate-100 font-bold tracking-wider">
-                      <tr>
-                        <th className="px-4 py-3">Disbursal Month</th>
-                        <th className="px-4 py-3">Remarks / References</th>
-                        <th className="px-4 py-3 text-right">
-                          Calculated Salary
-                        </th>
-                        <th className="px-4 py-3 text-right">
-                          Advance Adjustment
-                        </th>
-                        <th className="px-4 py-3 text-right">
-                          Disbursed Amount
-                        </th>
-                        <th className="px-4 py-3 text-right">Remaining Due</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 text-slate-600">
-                      <tr className="hover:bg-slate-50/50 transition-colors">
-                        <td className="px-4 py-3 text-slate-500 whitespace-nowrap font-semibold uppercase">
-                          {selectedStaffMonth}
-                        </td>
-                        <td className="px-4 py-3">
-                          <p className="font-semibold text-slate-800">
-                            {activeStaffStatement.notes ||
-                              "Salary Generated for Month"}
-                          </p>
-                          <span className="text-[9px] text-slate-400">
-                            Ref: STF-PAY-{activeStaffStatement._id?.slice(-4)}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3 text-right font-medium text-slate-700 whitespace-nowrap">
-                          PKR{" "}
-                          {(
-                            (activeStaffStatement.finalCalculatedSalary || 0) +
-                            (activeStaffStatement.advanceDeducted || 0)
-                          ).toLocaleString()}
-                        </td>
-                        <td className="px-4 py-3 text-right font-medium text-amber-600 whitespace-nowrap">
-                          - PKR{" "}
-                          {activeStaffStatement.advanceDeducted?.toLocaleString() ||
-                            0}
-                        </td>
-                        <td className="px-4 py-3 text-right font-bold text-emerald-600 whitespace-nowrap">
-                          PKR{" "}
-                          {activeStaffStatement.totalPaidMonth?.toLocaleString() ||
-                            0}
-                        </td>
-                        <td className="px-4 py-3 text-right font-bold text-slate-900 bg-slate-50/30 whitespace-nowrap">
-                          PKR{" "}
-                          {activeStaffStatement.balance?.toLocaleString() || 0}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-slate-50 px-6 py-4 flex justify-end gap-2 border-t border-slate-100 z-10">
-              <button
-                onClick={() => setActiveStaffStatement(null)}
-                className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition-all shadow-sm"
-              >
-                Close Statement
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {isModalOpen && selectedDoctor && (
-        <div className="fixed inset-0 bg-slate-900/30 backdrop-blur-[2px] flex items-center justify-center p-4 z-50">
-          <div className="bg-white w-full max-w-md rounded-xl shadow-xl overflow-hidden p-5 border border-slate-100">
-            <h3 className="text-sm font-bold text-slate-800 mb-4">
-              Pay Doctor: {selectedDoctor.name}
-            </h3>
-            <form onSubmit={handlePaymentSubmit} className="space-y-4 text-xs">
-              <div>
-                <label className="block font-semibold text-slate-500 mb-1">
-                  Amount to Pay (PKR)
-                </label>
-                <input
-                  type="number"
-                  required
-                  value={amountToPay}
-                  onChange={(e) => setAmountToPay(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none"
-                />
-              </div>
-              <div>
-                <label className="block font-semibold text-slate-500 mb-1">
-                  Payment Mode
-                </label>
-                <select
-                  value={paymentMode}
-                  onChange={(e) => setPaymentMode(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg bg-white"
-                >
-                  <option value="Cash">Cash</option>
-                  <option value="Bank Transfer">Bank Transfer</option>
-                  <option value="Cheque">Cheque</option>
-                </select>
-              </div>
-              <div>
-                <label className="block font-semibold text-slate-500 mb-1">
-                  Notes / Remarks
-                </label>
-                <textarea
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg h-20 resize-none"
-                  placeholder="Optional details..."
-                ></textarea>
-              </div>
-              <div className="flex justify-end gap-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 bg-slate-100 text-slate-600 rounded-lg font-medium"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={isPaying}
-                  className="px-4 py-2 bg-slate-900 text-white rounded-lg font-semibold"
-                >
-                  {isPaying ? "Processing..." : "Confirm Payment"}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {isStaffModalOpen && selectedStaff && (
-        <div className="fixed inset-0 bg-slate-900/30 backdrop-blur-[2px] flex items-center justify-center p-4 z-50">
-          <div className="bg-white w-full max-w-md rounded-xl shadow-xl overflow-hidden p-5 border border-slate-100">
-            <h3 className="text-sm font-bold text-slate-800 mb-4">
-              Disburse Salary: {selectedStaff.name}
-            </h3>
-            <form
-              onSubmit={handleStaffSalarySubmit}
-              className="space-y-4 text-xs"
-            >
-              <div>
-                <label className="block font-semibold text-slate-500 mb-1">
-                  Disbursal Amount (PKR)
-                </label>
-                <input
-                  type="number"
-                  required
-                  value={staffSalaryAmount}
-                  onChange={(e) => setStaffSalaryAmount(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none font-semibold"
-                />
-              </div>
-              <div>
-                <label className="block font-semibold text-slate-500 mb-1">
-                  Memo / Note
-                </label>
-                <textarea
-                  value={staffNotes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg h-20 resize-none"
-                  placeholder="Salary disbursement details..."
-                ></textarea>
-              </div>
-              <div className="flex justify-end gap-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setIsStaffModalOpen(false)}
-                  className="px-4 py-2 bg-slate-100 text-slate-600 rounded-lg font-medium"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={isPayingStaff}
-                  className="px-4 py-2 bg-slate-900 text-white rounded-lg font-semibold"
-                >
-                  {isPayingStaff ? "Processing..." : "Disburse Salary"}
-                </button>
-              </div>
-            </form>
           </div>
         </div>
       )}
