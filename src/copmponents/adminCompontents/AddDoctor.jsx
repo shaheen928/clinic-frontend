@@ -136,28 +136,38 @@ const AddDoctor = () => {
 
   return (
     <div
-      className="w-full flex flex-col items-center justify-center p-4 sm:p-6"
+      className="w-full flex flex-col items-center justify-center p-3 sm:p-6"
       dir="ltr"
     >
-      <div className="w-full max-w-4xl bg-white p-5 sm:p-8 rounded-2xl border border-slate-100 shadow-sm text-left mx-auto">
-        <div className="flex items-center justify-between mb-6 border-b border-slate-50 pb-4">
-          <div className="flex items-center gap-2">
-            <LuStethoscope className="text-2xl text-teal-600" />
-            <h2 className="text-xl font-bold text-slate-800">Add New Doctor</h2>
+      <style>{`
+        .react-datepicker-wrapper {
+          width: 100% !important;
+        }
+      `}</style>
+
+      <div className="w-full max-w-4xl bg-white p-4 sm:p-8 rounded-2xl border border-slate-100 shadow-sm text-left mx-auto">
+        {/* Top Header Section - Stacked on Mobile, Row on Desktop */}
+        <div className="flex flex-row items-center justify-between gap-3 mb-6 border-b border-slate-50 pb-4">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <LuStethoscope className="text-xl sm:text-2xl text-teal-600 shrink-0" />
+            <h2 className="text-lg sm:text-xl font-bold text-slate-800">
+              Add New Doctor
+            </h2>
           </div>
 
           <button
             type="button"
             onClick={() => navigate("/admin/doctors")}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 text-sm font-semibold text-slate-600 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all active:scale-95 cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all active:scale-95 cursor-pointer shrink-0"
           >
-            <LuArrowLeft className="text-base" /> Go Back
+            <LuArrowLeft className="text-sm sm:text-base" /> Go Back
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="flex flex-wrap items-center gap-4 mb-6 bg-slate-50/50 p-4 rounded-xl border border-slate-100 w-max">
-            <div className="h-16 w-16 bg-white border border-dashed border-slate-200 rounded-full flex items-center justify-center text-xl overflow-hidden shadow-sm text-slate-400">
+        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+          {/* Responsive Image Upload Section */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 mb-6 bg-slate-50/50 p-4 rounded-xl border border-slate-100 w-full sm:w-max">
+            <div className="h-16 w-16 bg-white border border-dashed border-slate-200 rounded-full flex items-center justify-center text-xl overflow-hidden shadow-sm text-slate-400 shrink-0">
               {image ? (
                 <img
                   src={URL.createObjectURL(image)}
@@ -172,10 +182,11 @@ const AddDoctor = () => {
               type="file"
               accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}
-              className="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100 cursor-pointer"
+              className="w-full sm:w-auto text-xs sm:text-sm text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100 cursor-pointer"
             />
           </div>
 
+          {/* Form Fields - Grid Columns auto adjust */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
@@ -551,13 +562,13 @@ const AddDoctor = () => {
               </h3>
             </div>
 
-            <div className="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <div className="space-y-3 bg-slate-50 p-3 sm:p-4 rounded-2xl border border-slate-100">
               {Object.keys(weeklySchedule).map((day) => (
                 <div
                   key={day}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-white rounded-xl border border-slate-100 shadow-sm hover:border-slate-200 transition-colors"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-white rounded-xl border border-slate-100 shadow-sm hover:border-slate-200 transition-colors"
                 >
-                  <div className="flex items-center gap-2 w-32 select-none">
+                  <div className="flex items-center gap-2 w-32 select-none shrink-0">
                     <input
                       className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-slate-300 rounded cursor-pointer accent-teal-600"
                       type="checkbox"
@@ -580,7 +591,7 @@ const AddDoctor = () => {
                   </div>
 
                   {weeklySchedule[day].isAvailable ? (
-                    <div className="flex justify-between items-center gap-2 bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                    <div className="flex items-center gap-2 bg-slate-50 p-1.5 rounded-lg border border-slate-100 w-full sm:w-auto justify-between sm:justify-start">
                       <input
                         type="time"
                         value={weeklySchedule[day].startTime}
@@ -602,7 +613,7 @@ const AddDoctor = () => {
                       />
                     </div>
                   ) : (
-                    <span className="inline-flex items-center gap-1 text-xs text-rose-500 font-semibold bg-rose-50/60 px-2.5 py-1 rounded-lg border border-rose-100">
+                    <span className="inline-flex items-center gap-1 text-xs text-rose-500 font-semibold bg-rose-50/60 px-2.5 py-1 rounded-lg border border-rose-100 w-max">
                       <LuBan className="text-[11px]" /> Off Day
                     </span>
                   )}
