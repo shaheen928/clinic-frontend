@@ -126,7 +126,7 @@ const EditDoctorSchedule = () => {
       dir="ltr"
     >
       <h2 className="text-xl font-extrabold text-slate-800 mb-1">
-        Edit Schedule for Dr. {data?.doctor?.name}
+        Edit Schedule for {data?.doctor?.name}
       </h2>
       <p className="text-slate-500 text-sm mb-6">
         Modify the weekly shift timings and off days.
