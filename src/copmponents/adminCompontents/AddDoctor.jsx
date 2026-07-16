@@ -136,7 +136,7 @@ const AddDoctor = () => {
 
   return (
     <div
-      className="w-full flex flex-col items-center justify-center p-3 sm:p-6"
+      className="w-full flex flex-col items-center justify-center p-2 sm:p-6"
       dir="ltr"
     >
       <style>{`
@@ -145,8 +145,8 @@ const AddDoctor = () => {
         }
       `}</style>
 
-      <div className="w-full max-w-4xl bg-white p-4 sm:p-8 rounded-2xl border border-slate-100 shadow-sm text-left mx-auto">
-        {/* Top Header Section - Stacked on Mobile, Row on Desktop */}
+      <div className="w-full max-w-4xl bg-white p-3.5 sm:p-8 rounded-2xl border border-slate-100 shadow-sm text-left mx-auto">
+        {/* Top Header Section */}
         <div className="flex flex-row items-center justify-between gap-3 mb-6 border-b border-slate-50 pb-4">
           <div className="flex items-center gap-1.5 sm:gap-2">
             <LuStethoscope className="text-xl sm:text-2xl text-teal-600 shrink-0" />
@@ -186,7 +186,7 @@ const AddDoctor = () => {
             />
           </div>
 
-          {/* Form Fields - Grid Columns auto adjust */}
+          {/* Form Fields */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-medium text-slate-600 mb-1 flex items-center gap-1.5">
@@ -562,13 +562,13 @@ const AddDoctor = () => {
               </h3>
             </div>
 
-            <div className="space-y-3 bg-slate-50 p-3 sm:p-4 rounded-2xl border border-slate-100">
+            <div className="space-y-3 bg-slate-50 p-2 sm:p-4 rounded-2xl border border-slate-100">
               {Object.keys(weeklySchedule).map((day) => (
                 <div
                   key={day}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-white rounded-xl border border-slate-100 shadow-sm hover:border-slate-200 transition-colors"
+                  className="flex flex-row items-center justify-between gap-2 p-2.5 sm:p-3 bg-white rounded-xl border border-slate-100 shadow-sm hover:border-slate-200 transition-colors"
                 >
-                  <div className="flex items-center gap-2 w-32 select-none shrink-0">
+                  <div className="flex items-center gap-1.5 select-none shrink-0">
                     <input
                       className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-slate-300 rounded cursor-pointer accent-teal-600"
                       type="checkbox"
@@ -584,23 +584,23 @@ const AddDoctor = () => {
                     />
                     <label
                       htmlFor={`check-${day}`}
-                      className="text-sm font-semibold text-slate-700 capitalize cursor-pointer"
+                      className="text-xs sm:text-sm font-semibold text-slate-700 capitalize cursor-pointer"
                     >
                       {day}
                     </label>
                   </div>
 
                   {weeklySchedule[day].isAvailable ? (
-                    <div className="flex items-center gap-2 bg-slate-50 p-1.5 rounded-lg border border-slate-100 w-full sm:w-auto justify-between sm:justify-start">
+                    <div className="flex items-center gap-1.5 bg-slate-50 p-1 sm:p-1.5 rounded-lg border border-slate-100 justify-end shrink-0">
                       <input
                         type="time"
                         value={weeklySchedule[day].startTime}
                         onChange={(e) =>
                           handleScheduleChange(day, "startTime", e.target.value)
                         }
-                        className="p-1 px-2 rounded-md bg-white border border-slate-200 text-xs font-medium text-slate-700 outline-none focus:border-teal-500 cursor-pointer"
+                        className="p-1 px-1.5 rounded bg-white border border-slate-200 text-[11px] sm:text-xs font-medium text-slate-700 outline-none focus:border-teal-500 cursor-pointer w-19 sm:w-auto text-center"
                       />
-                      <span className="text-xs text-slate-400 font-medium">
+                      <span className="text-[10px] sm:text-xs text-slate-400 font-medium">
                         to
                       </span>
                       <input
@@ -609,12 +609,12 @@ const AddDoctor = () => {
                         onChange={(e) =>
                           handleScheduleChange(day, "endTime", e.target.value)
                         }
-                        className="p-1 px-2 rounded-md bg-white border border-slate-200 text-xs font-medium text-slate-700 outline-none focus:border-teal-500 cursor-pointer"
+                        className="p-1 px-1.5 rounded bg-white border border-slate-200 text-[11px] sm:text-xs font-medium text-slate-700 outline-none focus:border-teal-500 cursor-pointer w-19 sm:w-auto text-center"
                       />
                     </div>
                   ) : (
-                    <span className="inline-flex items-center gap-1 text-xs text-rose-500 font-semibold bg-rose-50/60 px-2.5 py-1 rounded-lg border border-rose-100 w-max">
-                      <LuBan className="text-[11px]" /> Off Day
+                    <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs text-rose-500 font-semibold bg-rose-50/60 px-2 py-0.5 sm:py-1 rounded-lg border border-rose-100 shrink-0">
+                      <LuBan className="text-[10px]" /> Off Day
                     </span>
                   )}
                 </div>
@@ -625,7 +625,7 @@ const AddDoctor = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold p-3.5 rounded-xl transition-all shadow-md shadow-teal-50 active:scale-[0.99] disabled:bg-teal-400 cursor-pointer text-center"
+            className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold p-3.5 rounded-xl transition-all shadow-md shadow-teal-50 active:scale-[0.99] disabled:bg-teal-400 cursor-pointer text-center text-sm sm:text-base"
           >
             {isLoading
               ? "Adding Doctor to Directory..."
