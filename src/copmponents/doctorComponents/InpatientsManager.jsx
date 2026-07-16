@@ -230,13 +230,13 @@ const InpatientsManager = () => {
                                   {patientName}
                                 </h4>
                                 <div className="flex flex-col gap-1 mt-1">
-                                  <span className="text-[11px] text-slate-400 font-bold">
+                                  <span className="text-[11px] text-slate-400 font-bold whitespace-nowrap">
                                     Type:{" "}
                                     {item.admissionType === "Surgery"
                                       ? "Surgery Admission"
                                       : "General Admission"}
                                   </span>
-                                  <span className="text-[11px] font-black text-slate-600 flex items-center gap-1">
+                                  <span className="text-[11px] font-black text-slate-600 flex items-center gap-1 whitespace-nowrap">
                                     🔄 Total Rounds:{" "}
                                     <span className="bg-teal-50 text-teal-700 text-[10px] px-1.5 py-0.2 rounded font-black border border-teal-100/50">
                                       {item.totalRounds || 0}
@@ -278,7 +278,7 @@ const InpatientsManager = () => {
                           </td>
                           <td className="py-4 px-6 text-center">
                             {item.status === "Awaiting Bed" ? (
-                              <span className="text-[10px] font-black uppercase tracking-wide text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100 animate-pulse">
+                              <span className="text-[10px] font-black uppercase tracking-wide text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100 animate-pulse whitespace-nowrap">
                                 Awaiting Bed
                               </span>
                             ) : (

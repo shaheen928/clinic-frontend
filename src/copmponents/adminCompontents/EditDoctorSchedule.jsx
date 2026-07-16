@@ -28,7 +28,6 @@ const EditDoctorSchedule = () => {
   const navigate = useNavigate();
 
   const { data, isLoading, error } = useGetDoctorInfoQuery(docId);
-  console.log(data);
   const [updateSchedule, { isLoading: isUpdating }] =
     useUpdateDoctorScheduleMutation();
 
@@ -123,7 +122,7 @@ const EditDoctorSchedule = () => {
 
   return (
     <div
-      className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm max-w-4xl mx-auto mt-6 text-left"
+      className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-100 shadow-sm max-w-4xl mx-auto mt-6 text-left w-full overflow-hidden"
       dir="ltr"
     >
       <h2 className="text-xl font-extrabold text-slate-800 mb-1">
@@ -133,8 +132,8 @@ const EditDoctorSchedule = () => {
         Modify the weekly shift timings and off days.
       </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="divide-y divide-slate-100">
+      <form onSubmit={handleSubmit} className="space-y-4w-full">
+        <div className="divide-y divide-slate-100 w-full">
           {daysOfWeek.map((day) => {
             const lowerDay = day.toLowerCase();
             const dayData = weeklySchedule[lowerDay] || {
@@ -148,13 +147,19 @@ const EditDoctorSchedule = () => {
             return (
               <div
                 key={day}
-                className="flex flex-col sm:flex-row sm:items-center justify-between py-4 gap-4"
+                className="flex flex-col sm:flex-row sm:items-center justify-between py-4 gap-4 w-full"
               >
-                <span className="font-bold text-slate-700 w-28">{day}</span>
+                {/* Day Name */}
+                <span className="font-bold text-slate-700 w-full sm:w-28 text-base">
+                  {day}
+                </span>
 
-                <div className="flex items-center gap-4 flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-slate-400">Start:</span>
+                {/* Time Inputs Wrapper (Fixed for Mobile Screens) */}
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 flex-1 w-full">
+                  <div className="flex items-center gap-2 min-w-32 flex-1 sm:flex-initial">
+                    <span className="text-xs text-slate-400 min-w-8">
+                      Start:
+                    </span>
                     <input
                       type="time"
                       disabled={isOffDay}
@@ -162,12 +167,12 @@ const EditDoctorSchedule = () => {
                       onChange={(e) =>
                         handleTimeChange(day, "startTime", e.target.value)
                       }
-                      className="border border-slate-200 rounded-lg p-1.5 text-sm focus:outline-teal-500 disabled:bg-slate-50"
+                      className="border border-slate-200 rounded-lg p-1.5 text-sm focus:outline-teal-500 disabled:bg-slate-50 w-full sm:w-auto"
                     />
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-slate-400">End:</span>
+                  <div className="flex items-center gap-2 min-w-32 flex-1 sm:flex-initial">
+                    <span className="text-xs text-slate-400 min-w-8">End:</span>
                     <input
                       type="time"
                       disabled={isOffDay}
@@ -175,12 +180,13 @@ const EditDoctorSchedule = () => {
                       onChange={(e) =>
                         handleTimeChange(day, "endTime", e.target.value)
                       }
-                      className="border border-slate-200 rounded-lg p-1.5 text-sm focus:outline-teal-500 disabled:bg-slate-50"
+                      className="border border-slate-200 rounded-lg p-1.5 text-sm focus:outline-teal-500 disabled:bg-slate-50 w-full sm:w-auto"
                     />
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                {/* Checkbox Section */}
+                <div className="flex items-center gap-2 min-w-35 pt-1 sm:pt-0">
                   <input
                     type="checkbox"
                     id={`closed-${lowerDay}`}
@@ -192,7 +198,7 @@ const EditDoctorSchedule = () => {
                   />
                   <label
                     htmlFor={`closed-${lowerDay}`}
-                    className="text-sm font-medium text-slate-600 select-none"
+                    className="text-sm font-medium text-slate-600 select-none cursor-pointer"
                   >
                     Mark as Off Day
                   </label>
@@ -202,7 +208,8 @@ const EditDoctorSchedule = () => {
           })}
         </div>
 
-        <div className="pt-4 flex justify-end gap-3">
+        {/* Action Buttons */}
+        <div className="pt-6 flex justify-end gap-3 w-full">
           <button
             type="button"
             onClick={() => navigate("/admin/doctors")}
